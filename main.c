@@ -47,7 +47,8 @@ void filestat2(void)
 //파일 1의 시간 정보를 가져오는 함수 작성
 void filetime1(void)
 {
-	printf("text1 : %s\n",ctime(&stat1.st_mtime));
+	time1=localtime(&stat1.st_mtime);
+	printf("text1 : %s", asctime(time1));	
 
 	return;
 }
@@ -55,7 +56,8 @@ void filetime1(void)
 //파일 2의 시간 정보를 가져오는 함수 작성
 void filetime2(void)
 {
-	printf("text2 : %s\n", ctime(&stat2.st_mtime));
+	time2=localtime(&stat2.st_mtime);
+	printf("text2 : %s", asctime(time2));
 
 	return;
 }
