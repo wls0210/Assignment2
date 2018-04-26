@@ -46,7 +46,7 @@ void filestat2(void)
 
 //파일 1의 시간 정보를 가져오는 함수 작성
 void filetime1(void)
-{
+
 	time1=localtime(&stat1.st_mtime);
 	printf("text1 : %s", asctime(time1));	
 
@@ -80,6 +80,21 @@ void sizecmp(void)
 //두 개의 파일 블락 수를 비교하는 함수 작성
 void blockcmp(void)
 {
+printf("size compare\n");
+ if(stat1.st_block > stat2.st_block)  
+	 printf("text1 is bigger\n"); 
+	
+	if(stat1.st_block < stat2.st_block) 
+	 
+	 printf("text2 is bigger\n"); 
+	
+	if(stat1.st_block == stat2.st_block)  
+	 
+	 
+	 printf("text1 is equal text2\n"); 
+return;
+
+
 }
 
 //두 개의 파일 수정 날짜를 비교하는 함수 작성
