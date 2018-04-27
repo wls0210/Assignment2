@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -47,7 +48,8 @@ void filestat2(void)
 //파일 1의 시간 정보를 가져오는 함수 작성
 void filetime1(void)
 {
-	time1=localtime(&stat1.st_mtime);
+	time1=(tm*)malloc(sizeof(tm));
+	*time1=*localtime(&stat1.st_mtime);
 	printf("text1 : %s", asctime(time1));	
 
 	return;
@@ -56,7 +58,8 @@ void filetime1(void)
 //파일 2의 시간 정보를 가져오는 함수 작성
 void filetime2(void)
 {
-	time2=localtime(&stat2.st_mtime);
+	time2=(tm*)malloc(sizeof(tm));
+	*time2=*localtime(&stat2.st_mtime);
 	printf("text2 : %s", asctime(time2));
 
 	return;
@@ -80,6 +83,16 @@ void sizecmp(void)
 //두 개의 파일 블락 수를 비교하는 함수 작성
 void blockcmp(void)
 {
+	int block1,block2;
+	printf("block compare\n");
+	block1=(int)stat1.st_blocks;
+	block2=(int)stat2.st_blocks;
+	if(block1>block2)
+		printf("text1 is bigger\n");
+	else if(block1==block2)
+		printf("text1 is equal text2\n");
+	else
+		printf("text2 is bigger\n");
 }
 
 //두 개의 파일 수정 날짜를 비교하는 함수 작성
